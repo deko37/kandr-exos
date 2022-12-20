@@ -21,16 +21,8 @@ int lireligne(char ligne[], int limite)
 	int i, c;
 	i = 0;
 	
-	while (i < limite - 1)
-	{
-		c = getchar();
-		if (c == EOF)
-			break;
-		if (c == '\n')
-			break;
+	for (i = 0; i < limite - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
 		ligne[i] = c;
-		++i;
-	}
 
 	if (c == '\n')
 	{
@@ -46,8 +38,13 @@ int htoi(char s[])
 {
 	int hex_nbr = 0;
 	int c = 0;
+	int i;
+	if (s[0] == '0' && (s[1] == 'X' || s[1] == 'x'))
+		i = 2;
+	else
+		i = 0;
 
-	for (int i = 2; i < MAX_CHAR && isxdigit((c = s[i])); ++i)
+	for (; i < MAX_CHAR && isxdigit((c = s[i])); ++i)
 	{
 		if (isdigit(c))
 			hex_nbr = 0x10 * hex_nbr + (c - '0');

@@ -8,7 +8,9 @@ int main()
 	signed short limit_cal_short = 1;
 	signed int   limit_cal_int   = 1;
 	signed long  limit_cal_long  = 1;
-	
+	float  limit_cal_float  = 1;
+	double limit_cal_double = 1;
+
 	while (limit_cal_long > 0)
 	{
 		if (limit_cal_char > 0)
@@ -31,9 +33,26 @@ int main()
 			limit_cal_long *= 2;
 	}
 
-	printf("Limites signées calculées : \nchar : de %d à %d\nshort: de %d à %d\nint: de %d à %d\nlong: de %d à %d\n",
+	while (limit_cal_double > 0)
+	{
+		if (limit_cal_float < 0)
+		{
+			limit_cal_float *= 2;
+			limit_cal_double = limit_cal_float;
+		}
+		else
+		{
+			if (limit_cal_double == limit_cal_float)
+				--limit_cal_double;
+			else
+				limit_cal_double *= 2;
+		}
+		printf("%f %f\n", limit_cal_float, limit_cal_double);
+	}
+
+	printf("Limites signées calculées : \nchar : de %d à %d\nshort: de %d à %d\nint: de %d à %d\nlong: de %d à %d\nfloat: de %f à %f\ndouble: de %f à %f",
 			(limit_cal_char += 1), (--limit_cal_char), (limit_cal_short += 1), (--limit_cal_short),
-			(limit_cal_int += 1), (--limit_cal_int), (limit_cal_long += 1), (--limit_cal_long));
+			(limit_cal_int += 1), (--limit_cal_int), (limit_cal_long += 1), (--limit_cal_long), limit_cal_float, limit_cal_float, limit_cal_double, limit_cal_double);
 	printf("\nLimites signées définies dans la bibliothèque stantard : \nchar : de %d à %d\nshort: de %d à %d\nint: de %d à %d\nlong: de %d à %d\n",
 			CHAR_MIN, CHAR_MAX, SHRT_MIN, SHRT_MAX, INT_MIN, INT_MAX, LONG_MIN, LONG_MAX);
 
